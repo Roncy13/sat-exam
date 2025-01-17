@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "2e517bfe-d549-4315-b62e-008328c7348b",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26158009"
+	},
+	"item": [
+		{
+			"name": "create question",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"question created successfully\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const result = JSON.parse(pm.response.text())",
+							"    pm.environment.set('questionId', result.result.id)",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"question\": \"In a town, there is a 4-acre park and a 60-acre residential area. The total number of street lamps in the town is 1,200. The equation 4x + 60y = 1,200 represents this situation. Which of the following is the best interpretation of x in this context?\",\n    \"answer\": \"42\",\n    \"multipleChoice\": [\"The average number of street lamps per acre in the park \", \"The average number of street lamps per acre in the residential area\", \"The total number of street lamps in the park\", \"The total number of street lamps in the residential area\"],\n    \"steps\": [\n        {\n            \"title\": \"Title 1\",\n            \"result\": \"Resul 1\",\n            \"imageUrl\": \"https://2.img-dpreview.com/files/p/E~C1000x0S4000x4000T1200x1200~articles/3925134721/0266554465.jpeg\"\n        }\n    ],\n    \"imageUrl\": \"https://2.img-dpreview.com/files/p/E~C1000x0S4000x4000T1200x1200~articles/3925134721/0266554465.jpeg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/question",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch list questions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"question created successfully\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const result = JSON.parse(pm.response.text())",
+							"    pm.environment.set('questionId', result.result.id)",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/questions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update question",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    // \"question\": \"In a town, there is a 4-acre park and a 60-acre residential area. The total number of street lamps in the town is 1,200. The equation 4x + 60y = 1,200 represents this situation. Which of the following is the best interpretation of x iΩΩn this context?\",\n    \n    // \"multipleChoice\": [\"The average number of street lamps per acre in the park \", \"The average number of street lamps per acre in the residential area\", \"The total number of street lamps in the park\", \"The total number of street lamps in the residential area\"],\n    // \"steps\": [\n    //     {\n    //         \"title\": \"Step Title 1\",\n    //         \"result\": \"Step Title 1\",\n    //         \"imageUrl\": \"https://2.img-dpreview.com/files/p/E~C1000x0S4000x4000T1200x1200~articles/3925134721/0266554465.jpeg\"\n    //     },\n    //     {\n    //         \"title\": \"Step Title 2\",\n    //         \"result\": \"Step Title 2\"}\n    // ]\n    \"answer\": \"552\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/question/{{questionId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"question",
+						"{{questionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete question",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    // \"question\": \"<b>HEY</b> this is a sample question\",\n    // \"answer\": \"66\",\n    // \"multipleChoice\": [\"31\", \"23\", \"33\", \"55\"]\n    // \"explanation\": \"ba bla bla\",\n    // \"imageUrl\": \"https://2.img-dpreview.com/files/p/E~C1000x0S4000x4000T1200x1200~articles/3925134721/0266554465.jpeg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/question/{{questionId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"question",
+						"{{questionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get question by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"question\": \"<b>HEY</b> this is a sample question\",\n    \"answer\": \"42\",\n    \"multipleChoice\": [\"31\", \"23\", \"33\", \"42\"],\n    \"explanation\": \"ba bla bla\",\n    \"imageUrl\": \"https://2.img-dpreview.com/files/p/E~C1000x0S4000x4000T1200x1200~articles/3925134721/0266554465.jpeg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/question/{{questionId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"question",
+						"{{questionId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
